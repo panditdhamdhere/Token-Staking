@@ -24,10 +24,10 @@ library Address {
         address target,
         bytes memory data
     ) internal returns (bytes memory) {
-        return functionCall(target, data); // "Address: low-level call failed"
+        return functionCall(target, data, "Address: low-level call failed"); // "Address: low-level call failed"
     }
 
-    function functioncall(
+    function functionCall(
         address target,
         bytes memory data,
         string memory errorMessage
@@ -57,7 +57,7 @@ library Address {
     ) internal returns (bytes memory) {
         require(
             address(this).balance >= value,
-            "Address: insufficiant balance"
+            "Address: insufficiant balance for call"
         );
         require(isContract(target), "Address: call to non-contract");
 
