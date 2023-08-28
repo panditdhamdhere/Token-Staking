@@ -130,3 +130,15 @@ function formatEthErrorMsg(error) {
     return "Something went wrong!";
   }
 }
+
+function getSelectedTab(sClass) {
+  console.log(sClass);
+  return sClass || contractCall;
+}
+
+function getContractObj(sClass) {
+  return new web3.eth.Contract(
+    SELECT_CONTRACT[_NETWORK_ID].STAKING.abi,
+    SELECT_CONTRACT[_NETWORK_ID].STAKING[sClass].address
+  );
+}
