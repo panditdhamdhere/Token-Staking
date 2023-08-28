@@ -205,3 +205,73 @@ function generateCountDown(ele, claimDate) {
     }
   }, 1000);
 }
+
+async function connectMe(_provider) {
+  try {
+    let _comn_res = await commonProviderDetector(_provider);
+    console.log(_comn_res);
+
+    if (!_comn_res) {
+      console.log("Please Connect");
+    } else {
+      let sClass = getSelectedTab();
+      console.log(sClass);
+    }
+  } catch (error) {
+    notyf.error(error.message);
+  }
+}
+
+async function stakeTokens() {
+  try {
+    let nTokens = document.getElementById("amount-to-stack-value-new").value;
+
+    if (!nTokens) {
+      return;
+    }
+    if (isNaN(nTokens) || nTokens == 0 || Number(nTokens) < 0) {
+      console.log(`Invalid token amount!`);
+      return;
+    }
+
+    nTokens = Number(nTokens);
+
+    let tokenToTransfer = addDecimal(nTokens, 18);
+
+    console.log("tokenToTransfer", tokenToTransfer);
+
+    let balMainUser = await oContractToken.methods
+      .balanceOf(currentAddress)
+      .call();
+
+    balMainUser = Number(balMainUser) / 10 ** 18;
+
+    console.log("balMainUser", balMainUser);
+
+    if (balMainUser < nTokens) {
+      notyf.error(
+        `insufficient tokens on ${SELECT_CONTRACT[_NETWORK_ID].network_name}.\nPlease buy some tokens first!`
+      );
+      return;
+    }
+
+    let sClass = getSelectedTab(contractCall);
+    console.log(sClass);
+    let balMainAllowance = await oContractToken.methods
+      .allowance(
+        currentAddress,
+        SELECT_CONTRACT[_NETWORK_ID].STAKING[sClass].address
+      )
+      .call();
+
+    if (Number(balMainAllowance) < Number(tokenToTransfer)) {
+      approveTokenSpend(tokenToTransfer, sClass);
+    } else {
+      stackTokenMain(tokenToTransfer, sClass);
+    }
+  } catch (error) {
+    console.log(error);
+    notyf.dismiss(notification);
+    notyf.error(formatEthErrorMsg(error));
+  }
+}
