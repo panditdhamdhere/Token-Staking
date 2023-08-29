@@ -494,3 +494,27 @@ async function unstackTokenMain(_amount_wei, oContractStacking, sClass) {
       return;
     });
 }
+
+async function claimToken() {
+  try {
+    let sClass = getSelectedTab(contractCall);
+    let oContractStacking = getContractObj(sClass);
+
+    let rewardBal = await oContractStacking.methods
+      .getUserEstimatedRewards()
+      .call({ from: currentAddress });
+    rewardBal = Number(rewardBal);
+    console.log("rewardBal", rewardBal);
+
+    if (!rewardBal) {
+      notyf.dismiss(notification);
+      notyf.error(`insufficient reward tokens to claim!`);
+      return;
+    }
+    claimTokenMain(oContractStacking, sClass);
+  } catch (error) {
+    console.log(error);
+    notyf.dismiss(notification);
+    notyf.error(formatEthErrorMsg(error));
+  }
+}
