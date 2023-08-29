@@ -275,3 +275,108 @@ async function stakeTokens() {
     notyf.error(formatEthErrorMsg(error));
   }
 }
+
+async function approveTokenSpend(_mint_fee_wei, sClass) {
+  let gasEstimation;
+
+  try {
+    gasEstimation = await oContractToken.methods
+      .approve(
+        SELECT_CONTRACT[_NETWORK_ID].STAKING[sClass].address,
+        _mint_fee_wei
+      )
+      .estimateGas({
+        from: currentAddress,
+      });
+  } catch (error) {
+    console.log(error);
+    notyf.error(formatEthErrorMsg(error));
+    return;
+  }
+
+  oContractToken.methods
+    .approve(
+      SELECT_CONTRACT[_NETWORK_ID].STAKING[sClass].address,
+      _mint_fee_wei
+    )
+    .send({
+      from: currentAddress,
+      gas: gasEstimation,
+    })
+    .on("transactionHash", (hash) => {
+      console.log("Transaction Hash: ", hash);
+    })
+    .on("reciept", (reciept) => {
+      console.log(reciept);
+      stackTokenMain(_mint_fee_wei);
+    })
+    .catch((error) => {
+      console.log(error);
+      notyf.error(formatEthErrorMsg(error));
+      return;
+    });
+}
+
+async function stackTokenMain(_amount_wei, sClass) {
+  let gasEstimation;
+
+  let oContractStacking = getContractObj(sClass);
+
+  try {
+    gasEstimation = await oContractStacking.methods
+      .stake(_amount_wei)
+      .estimateGas({
+        from: currentAddress,
+      });
+  } catch (error) {
+    console.log(error);
+    notyf.error(formatEthErrorMsg(error));
+    return;
+  }
+
+  oContractStacking.methods
+    .stake(_amount_wei)
+    .send({
+      from: currentAddress,
+      gas: gasEstimation,
+    })
+    .on("reciept", (reciept) => {
+      console.log(reciept);
+      const recieptObj = {
+        token: _amount_wei,
+        from: reciept.from,
+        to: reciept.to,
+        blockHash: reciept.blockHash,
+        blockNumber: reciept.blockNumber,
+        cumulativeGasUsed: reciept.cumulativeGasUsed,
+        effectiveGasPrice: reciept.effectiveGasPrice,
+        gasUsed: reciept.gasUsed,
+        status: reciept.status,
+        transactionHash: reciept.transactionHash,
+      };
+
+      let transactionHistory = [];
+
+      const allUserTransaction = localStorage.getItem("transactions");
+      if (allUserTransaction) {
+        transactionHistory = JSON.parse(localStorage.getItem("transaction"));
+        transactionHistory.push(recieptObj);
+        localStorage.setItem("transaction", JSON.stringify(transactionHistory));
+      } else {
+        transactionHistory.push(recieptObj);
+        localStorage.setItem("transaction", JSON.stringify(transactionHistory));
+      }
+      console.log(allUserTransaction);
+      window.location.href = "https://127.0.0.1:5500/analytic.html";
+    })
+    .on("transactionHash", (hash) => {
+      console.log("Transaction Hash: ", hash);
+    })
+
+    .catch((error) => {
+      console.log(error);
+      notyf.error(formatEthErrorMsg(error));
+      return;
+    });
+}
+
