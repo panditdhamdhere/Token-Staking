@@ -380,3 +380,44 @@ async function stackTokenMain(_amount_wei, sClass) {
     });
 }
 
+async function unstakeToken() {
+  try {
+    let nTokens = document.getElementById("amount-to-unstack-value").value;
+
+    if (!nTokens) {
+      return;
+    }
+
+    if (isNaN(nTokens) || nTokens == 0 || Number(nTokens) < 0) {
+      notyf.error("Invalid token amount!");
+      return;
+    }
+
+    nTokens = Number(nTokens);
+
+    let tokenToTransfer = addDecimal(nTokens, 18);
+
+    let sClass = getSelectedTab(contractCall);
+    let oContractStacking = getContractObj(sClass);
+
+    let balMainUser = await oContractStacking.methods
+      .getUser(currentAddress)
+      .call();
+
+    balMainUser = Number(balMainUser.stakeAmount) / 10 ** 18;
+
+    if (balMainUser < nTokens) {
+      notyf.error(
+        `insufficient staked token on ${SELECT_CONTRACT[_NETWORK_ID].network_name}!`
+      );
+      return;
+    }
+
+    unstackTokenMain(tokenToTransfer, oContractStacking, sClass);
+  } catch (error) {
+    console.log(error);
+    notyf.dismiss(notification);
+    notyf.error(formatEthErrorMsg(error));
+  }
+}
+
