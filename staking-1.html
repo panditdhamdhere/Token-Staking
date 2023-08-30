@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2panditblockchain - ERC20 Token Stacking Dapp</title>
+  <title>@panditblockchain - ERC20 Token Stacking Dapp</title>
   <link rel="stylesheet" href="assets/img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="assets/vendor/notyf/notyf.min.css" />
   <link rel="stylesheet" href="assets/css/style.css">
@@ -43,7 +43,6 @@
   <!-- PRELOADER END-->
 
   <!-- MAIN START -->
-
   <div class="main">
     <!-- HEADER-SECTION -->
     <header id="header">
@@ -54,11 +53,10 @@
           </a>
           <div class="ml-auto"></div>
 
-          <ul class="navbar-nav items mx-auto     <li class=" nav-item active">
-
-            <a href="index.html" class="nav-link active">Home</a>
+          <ul class="navbar-nav items mx-auto">
+            <li class=" nav-item active">
+              <a href="index.html" class="nav-link active">Home</a>
             </li>
-
             <li class="nav-item">
               <a href="project-2.html" class="nav-link">Project</a>
             </li>
@@ -78,16 +76,103 @@
             <li class="nav-item">
               <a href="analytic.html" class="nav-link">Profile</a>
             </li>
+          </ul>
 
 
+          <!-- NAVBAR TOGGLE  -->
+          <ul class="navbar-nav icons">
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#search">
+                <i class="icon-magnifier"></i>
+              </a>
+            </li>
+          </ul>
+
+          <!-- NAVBAR TOGGLE  -->
+          <ul class="navbar-nav toggle">
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#menu">
+                <i class="icon-menu m-0"></i>
+              </a>
+            </li>
+          </ul>
+
+          <!-- NAVBAR ACTION BUTTON  -->
+          <ul class="navbar-nav action">
+            <li class="nav-item ml-2">
+              <a class="btn ml-lg-auto btn-bordered-white">
+                <i class="icon-wallet mr-md-2"></i>
+                Wallet Connect
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
     </header>
-    <!-- End of HEADER-SECTION -->
-  </div>
+    <!-- HEADER-SECTION END-->
 
+    <!-- MODAL SEARCH AREA START -->
+
+    <div id="search" class="modal fade p-0">
+      <div class="modal-dialog modal-animated">
+        <div class="modal-content h-100">
+          <div class="modal-header" data-dismiss="modal">
+            Search <i class="far fa-times-circle icon-close"></i>
+          </div>
+
+          <div class="modal-body">
+            <form class="row">
+              <div class="col-12 align-self-center">
+                <div class="row">
+                  <div class="col-12 pb-3">
+                    <h3 class="search-title mt-0 mb-3">
+                      What are you looking for?
+                    </h3>
+                    <p class="">Blockchain vloagashjmna kjlahqahb qaugjwa</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 input-group mt-md-4">
+                    <input type="text" placeholder="Enter your keywords">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 input-group align-self-center">
+                    <button class="btn btn-bordered-white mt-3 ">Search</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL SEARCH AREA END  -->
+
+    <!-- MODAL RESPONSIVE MENU ARE START  -->
+    <div id="menu" class="modal fade p-0">
+      <div class="modal-dialog dialog-animated">
+        <div class="modal-content h-100">
+          <div class="modal-header" data-dismiss="modal">
+            Menu <i class="far fa-times-circle icon-center"></i>
+          </div>
+
+          <div class="menu modal-body">
+            <div class="row w-100">
+              <div class="items p-0 col-12 text-center "></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL RESPONSIVE MENU ARE END  -->
+  </div>
   <!-- MAIN END -->
+
+
 
   <!-- SCRIPTS -->
   <script src="assets/js/vendor/jquery.min.js"></script>
@@ -100,8 +185,9 @@
   <script src="assets/js/vendor/shuffle.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/vendor/notyf/notyf.min.js"></script>
+
+  <!-- WEB 3 Functions Script-->
+
 </body>
-
-
 
 </html>
