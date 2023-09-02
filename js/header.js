@@ -10,13 +10,13 @@ SELECT_CONTRACT[_NETWORK_ID] = {
       address: "0xB2e6b82bF799f2369ACBdA2859e7b1F1A25E270f",
     },
     tenDays: {
-      address: "0x6dfd4cfdb46fcd4df3fc6563cf6d5",
+      address: "0xB2e6b82bF799f2369ACBdA2859e7b1F1A25E270f",
     },
     thirtyTwoDays: {
-      address: "0x86rdg68rgv844g5d56g84dg5dg564dg",
+      address: "0xB2e6b82bF799f2369ACBdA2859e7b1F1A25E270f",
     },
     ninetyDays: {
-      address: "0xecf14ed4524fd215rd5rfg45dcddce",
+      address: "0xB2e6b82bF799f2369ACBdA2859e7b1F1A25E270f",
     },
     abi: [
       {
@@ -960,7 +960,7 @@ SELECT_CONTRACT[_NETWORK_ID] = {
 };
 
 // countdown global
-let countDownGloal;
+let countDownGlobal;
 
 // wallet connection
 let web3;
@@ -970,7 +970,7 @@ let currentAddress;
 let web3Main = new Web3("https://rpc.ankr.com/polygon_mumbai");
 
 // Create an instance of notyf
-var notyt = new Notyf({
+var notyf = new Notyf({
   duration: 3000,
   position: { x: "right", y: "bottom" },
 });

@@ -28,7 +28,7 @@ async function commonProviderDetector(_provider) {
   }
 }
 
-async function commmonInjectedConnect(_provider, _provider_name) {
+async function commonInjectedConnect(_provider, _provider_name) {
   await _provider.enable();
 
   setWeb3Events(_provider);
