@@ -82,7 +82,7 @@ async function loadInitialData(sClass) {
     document
       .querySelectorAll(".Maximum-Staking-Amount")
       .forEach(function (element) {
-        element.innerHTML = `${(10000000).toLocaleString()} ${
+        element.innerHTML = `${(5000).toLocaleString()} ${
           SELECT_CONTRACT[_NETWORK_ID].TOKEN.symbol
         }`;
       });
@@ -222,7 +222,7 @@ async function connectMe(_provider) {
   }
 }
 
-async function stakeTokens() {
+async function stackTokens() {
   try {
     let nTokens = document.getElementById("amount-to-stack-value-new").value;
 
@@ -340,7 +340,7 @@ async function stackTokenMain(_amount_wei, sClass) {
       from: currentAddress,
       gas: gasEstimation,
     })
-    .on("reciept", (receipt) => {
+    .on("receipt", (receipt) => {
       console.log(receipt);
       const receiptObj = {
         token: _amount_wei,
@@ -353,6 +353,7 @@ async function stackTokenMain(_amount_wei, sClass) {
         gasUsed: receipt.gasUsed,
         status: receipt.status,
         transactionHash: receipt.transactionHash,
+        type: receipt.type
       };
 
       let transactionHistory = [];
@@ -386,7 +387,7 @@ async function stackTokenMain(_amount_wei, sClass) {
     });
 }
 
-async function unstakeToken() {
+async function unstackTokens() {
   try {
     let nTokens = document.getElementById("amount-to-unstack-value").value;
 
@@ -495,7 +496,7 @@ async function unstackTokenMain(_amount_wei, oContractStacking, sClass) {
     });
 }
 
-async function claimToken() {
+async function claimTokens() {
   try {
     let sClass = getSelectedTab(contractCall);
     let oContractStacking = getContractObj(sClass);
