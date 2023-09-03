@@ -43,11 +43,11 @@ async function loadInitialData(sClass) {
     ).innerHTML = `${userDetailBal}`;
 
     // ELEMENT--ID
-    document.getElementById("num-of-stakers-value").innerHTML = `${totalUsers}`;
+    document.getElementById("num-of-stackers-value").innerHTML = `${totalUsers}`;
     document.getElementById("apy-value-feature").innerHTML = `${cApy} %`;
 
     // CLASS ELEMENT DATA
-    let totalLockedToken = await cObj.methods.getTotalStakedTokens().call();
+    let totalLockedTokens = await cObj.methods.getTotalStakedTokens().call();
     let earlyUnstakeFee = await cObj.methods
       .getEarlyUnstakeFeePercentage()
       .call();
