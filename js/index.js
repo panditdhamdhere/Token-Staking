@@ -433,7 +433,7 @@ async function unstackTokenMain(_amount_wei, oContractStacking, sClass) {
 
   try {
     gasEstimation = await oContractStacking.methods
-      .unstake(_amount_wei)
+      .unStake(_amount_wei)
       .estimateGas({
         from: currentAddress,
       });
@@ -444,12 +444,12 @@ async function unstackTokenMain(_amount_wei, oContractStacking, sClass) {
   }
 
   oContractStacking.methods
-    .unstake(_amount_wei)
+    .unStake(_amount_wei)
     .send({
       from: currentAddress,
       gas: gasEstimation,
     })
-    .on("reciept", (receipt) => {
+    .on("receipt", (receipt) => {
       console.log(receipt);
       const receiptObj = {
         token: _amount_wei,

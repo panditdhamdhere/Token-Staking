@@ -5,8 +5,8 @@ SELECT_CONTRACT[_NETWORK_ID] = {
   network_name: "Polygon Mumbai",
   explorer_url: "https://mumbai.polygonscan.com/",
   STAKING: {
-    // 0x45dger5er354gre35gtr35
     sevenDays: {
+      // 0x6B53d50d3b4400c5aC8e79847b2180a47cd20AD7
       address: "0x6B53d50d3b4400c5aC8e79847b2180a47cd20AD7",
     },
     tenDays: {
@@ -586,7 +586,6 @@ SELECT_CONTRACT[_NETWORK_ID] = {
     ],
   },
 
-  // 0xlvrg356fcv;bdd65df6d65cdc
 
   TOKEN: {
     symbol: "PDC",
